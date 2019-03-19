@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/ic_gradient_divider" />
+
+    <com.autoforce.framework.component.MainTabGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/tab_home"-->
+            <!--style="@style/MainTabItemStyle"-->
+            <!--android:drawableTop="@drawable/tab_home_selector"-->
+            <!--android:text="@string/home_page" />-->
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/tab_car"-->
+            <!--style="@style/MainTabItemStyle"-->
+            <!--android:drawableTop="@drawable/tab_car_selector"-->
+            <!--android:text="@string/car_source" />-->
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/tab_customer"-->
+            <!--style="@style/MainTabItemStyle"-->
+            <!--android:drawableTop="@drawable/tab_customer_selector"-->
+            <!--android:text="@string/customer" />-->
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/tab_mine"-->
+            <!--style="@style/MainTabItemStyle"-->
+            <!--android:drawableTop="@drawable/tab_mine_selector"-->
+            <!--android:text="@string/mine" />-->
+    </com.autoforce.framework.component.MainTabGroup>
+</LinearLayout>

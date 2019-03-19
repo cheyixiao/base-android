@@ -1,0 +1,45 @@
+{
+  "layout_height": 100,
+  "defaultCheck": 1,
+  "tabs": [
+    {
+      "tabName": "首页",
+      "iconUnchecked": "ic_home_unchecked.png",
+      "iconChecked": "ic_home_checked.png",
+      "textColorChecked": "#D5001C",
+      "textColorUnchecked": "#666666",
+      "textSize": 20,
+      "drawablePadding": 5,
+      "iconPosition": "top",
+      "webUrl": "https://www.baidu.com/",
+      "imageRatio": 0.67,
+      "pageName": ""
+    },
+    {
+      "tabName": "车源",
+      "iconUnchecked": "ic_car_unchecked.png",
+      "iconChecked": "ic_car_checked.png",
+      "textColorChecked": "#D5001C",
+      "textColorUnchecked": "#666666",
+      "textSize": 20,
+      "drawablePadding": 5,
+      "iconPosition": "top",
+      "webUrl": "",
+      "imageRatio": 0.67,
+      "pageName": ""
+    },
+    {
+      "tabName": "我的",
+      "iconUnchecked": "ic_mine_unchecked.png",
+      "iconChecked": "ic_mine_checked.png",
+      "textColorChecked": "#D5001C",
+      "textColorUnchecked": "#666666",
+      "textSize": 20,
+      "drawablePadding": 5,
+      "iconPosition": "top",
+      "webUrl": "",
+      "imageRatio": 0.67,
+      "pageName": ""
+    }
+  ]
+}

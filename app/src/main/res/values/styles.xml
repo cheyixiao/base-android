@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--首页底部RadioButton-->
+    <!--<style name="MainTabItemStyle" parent="android:Widget.CompoundButton.RadioButton">-->
+        <!--<item name="android:drawablePadding">2.5dp</item>-->
+        <!--<item name="android:textColor">@color/main_tab_text_color_selector</item>-->
+        <!--<item name="android:textSize">10sp</item>-->
+        <!--<item name="android:gravity">center</item>-->
+        <!--<item name="android:layout_gravity">center</item>-->
+        <!--<item name="android:button">@null</item>-->
+        <!--<item name="android:layout_width">0dp</item>-->
+        <!--<item name="android:layout_weight">1</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+    <!--</style>-->
+
+</resources>
