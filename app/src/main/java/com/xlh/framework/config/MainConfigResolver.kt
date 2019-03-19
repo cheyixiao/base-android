@@ -1,11 +1,9 @@
-package com.autoforce.framework.config
+package com.xlh.framework.config
 
 import android.content.Context
-import android.os.Bundle
 import android.text.TextUtils
-import com.autoforce.framework.utils.AssetFileUtils
+import com.xlh.framework.utils.AssetFileUtils
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 /**
  * Created by xlh on 2019/3/18.

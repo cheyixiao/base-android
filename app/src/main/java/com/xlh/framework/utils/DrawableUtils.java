@@ -1,9 +1,9 @@
-package com.autoforce.framework.utils;
+package com.xlh.framework.utils;
 
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
-import com.autoforce.framework.R;
+import com.xlh.framework.R;
 
 /**
  * Created by xialihao on 2018/11/16.

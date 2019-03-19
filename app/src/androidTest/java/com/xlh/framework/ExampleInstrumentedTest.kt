@@ -1,4 +1,4 @@
-package com.autoforce.framework
+package com.xlh.framework
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

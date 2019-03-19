@@ -1,4 +1,4 @@
-package com.autoforce.framework.utils;
+package com.xlh.framework.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
-import com.autoforce.framework.R;
 //import com.autoforce.cheyixiao.App;
 //import com.autoforce.cheyixiao.common.data.local.utils.SpUtils;
 

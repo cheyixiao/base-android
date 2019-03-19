@@ -1,4 +1,4 @@
-package com.autoforce.framework.config;
+package com.xlh.framework.config;
 
 /**
  * Created by xlh on 2019/3/18.

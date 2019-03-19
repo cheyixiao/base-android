@@ -1,4 +1,4 @@
-package com.autoforce.framework.component;
+package com.xlh.framework.component;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import com.autoforce.framework.config.ConfigUtils;
-import com.autoforce.framework.config.DefaultConfigs;
-import com.autoforce.framework.config.MainConfigResult;
-import com.autoforce.framework.utils.DeviceUtil;
-import com.autoforce.framework.utils.DrawableUtils;
+import com.xlh.framework.config.ConfigUtils;
+import com.xlh.framework.config.DefaultConfigs;
+import com.xlh.framework.config.MainConfigResult;
+import com.xlh.framework.utils.DeviceUtil;
+import com.xlh.framework.utils.DrawableUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

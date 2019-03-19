@@ -1,7 +1,6 @@
-package com.autoforce.framework.config
+package com.xlh.framework.config
 
 import android.content.Context
-import android.os.Bundle
 
 /**
  * Created by xlh on 2019/3/18.
