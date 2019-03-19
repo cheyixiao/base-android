@@ -1,8 +1,8 @@
-package com.xlh.framework.config
+package com.autoforce.framework.config
 
 import android.content.Context
 import android.text.TextUtils
-import com.xlh.framework.utils.AssetFileUtils
+import com.autoforce.framework.utils.AssetFileUtils
 import com.google.gson.Gson
 
 /**

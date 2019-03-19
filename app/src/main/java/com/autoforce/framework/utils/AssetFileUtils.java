@@ -1,4 +1,4 @@
-package com.xlh.framework.utils;
+package com.autoforce.framework.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;

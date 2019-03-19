@@ -1,4 +1,4 @@
-package com.xlh.framework;
+package com.autoforce.framework;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.*;
 import android.widget.Toast;
-import com.xlh.framework.component.MainTabGroup;
-import com.xlh.framework.config.*;
+import com.autoforce.framework.component.MainTabGroup;
+import com.autoforce.framework.config.*;
 import org.jetbrains.annotations.NotNull;
 
 /**

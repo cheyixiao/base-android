@@ -1,4 +1,4 @@
-package com.xlh.framework
+package com.autoforce.framework
 
 import org.junit.Test
 

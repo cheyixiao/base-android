@@ -1,4 +1,4 @@
-package com.xlh.framework.config
+package com.autoforce.framework.config
 
 import com.google.gson.annotations.SerializedName
 
