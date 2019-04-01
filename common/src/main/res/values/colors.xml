@@ -6,4 +6,7 @@
     <color name="redD5">#D5001C</color>
     <color name="white">#ffffff</color>
     <color name="grey80">#808080</color>
+    <color name="half_transparent_05">#50000000</color>
+    <color name="black26">#262626</color>
+    <color name="greye0">#e0e0e0</color>
 </resources>

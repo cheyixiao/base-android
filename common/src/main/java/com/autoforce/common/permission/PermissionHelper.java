@@ -11,7 +11,7 @@ import com.autoforce.common.R;
 import com.autoforce.common.utils.AppMessageUtils;
 import com.autoforce.common.utils.SpUtils;
 import com.autoforce.common.utils.StringUtils;
-import com.autoforce.common.view.CustomerDialog;
+import com.autoforce.common.view.dialog.CustomerDialog;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.HashSet;
@@ -26,6 +26,7 @@ public class PermissionHelper {
 
     private final RxPermissions mRxPermissions;
     private final FragmentActivity mActivity;
+    // 申请的权限组
     private final String[] mPermissionArray;
     // 待申请的权限是否是强制性获取
     private final boolean isForceRequest;
@@ -252,9 +253,11 @@ public class PermissionHelper {
             sb.append("、");
         }
 
+        if (sb.length() <= 0) {
+            return "";
+        }
+
         sb.delete(sb.length() - 1, sb.length());
-
-
         return String.format(StringUtils.getString(R.string.to_permission_setting_tips), sb.toString());
     }
 

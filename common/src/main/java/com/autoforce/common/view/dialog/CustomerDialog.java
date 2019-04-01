@@ -1,4 +1,4 @@
-package com.autoforce.common.view;
+package com.autoforce.common.view.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
