@@ -5,4 +5,47 @@
         <item name="android:indeterminateDrawable">@drawable/progress_bar_layer_list</item>
         <item name="android:minHeight">1dp</item>
     </style>
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <!-- 没有标题栏 -->
+        <item name="windowNoTitle">true</item>
+
+        <!--边框-->
+        <item name="android:windowFrame">@null</item>
+
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+
+        <!-- 是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+
+        <!--除去title-->
+        <item name="android:windowNoTitle">true</item>
+
+        <!-- 对话框是否有遮盖 -->
+        <item name="android:windowContentOverlay">@null</item>
+
+        <!-- 对话框出现时背景是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <!-- 着色缓存（一般不用）-->
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <!--对话框背景(重要)-->
+        <item name="android:windowBackground">@null</item>
+
+        <!-- 动画 -->
+        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+
+        <!-- 输入法弹出时自适应 -->
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="MyDialog" parent="AppTheme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>

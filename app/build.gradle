@@ -30,9 +30,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation deps.supportCompat
-    implementation deps.supportConstraint
-    implementation deps.picasso
+//    implementation deps.supportCompat
+//    implementation deps.supportConstraint
+//    implementation deps.picasso
     implementation project(':common')
     testImplementation 'junit:junit:4.12'
     implementation deps.gson

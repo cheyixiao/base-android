@@ -134,7 +134,7 @@ public abstract class AbstractWebFragment extends Fragment {
         return new LruWebCacheImpl(getUrl(), getActivity());
     }
 
-    protected WebViewClient getWebViewClient() {
+    protected AutoForceWebClient getWebViewClient() {
         return new AutoForceWebClient(getCacheStrategy(), isInterceptRequest());
     }
 

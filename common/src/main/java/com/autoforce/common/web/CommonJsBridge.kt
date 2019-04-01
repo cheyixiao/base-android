@@ -15,7 +15,7 @@ import java.lang.ref.WeakReference
  * Created by xlh on 2019/3/21.
  * description:
  */
-class CommonJsBridge(activity: Activity) {
+open class CommonJsBridge(activity: Activity) {
 
     private val mActivity = WeakReference(activity)
 
@@ -46,7 +46,7 @@ class CommonJsBridge(activity: Activity) {
         when (obj.getString(METHOD)) {
             METHOD_CALL -> {
                 val msg = GsonProvider.gson().fromJson<CallMessage>(json, CallMessage::class.java)
-                doCall(msg.param.phoneNumber)
+                call(msg.param.phoneNumber)
             }
         }
 
@@ -55,7 +55,10 @@ class CommonJsBridge(activity: Activity) {
 
     @JavascriptInterface
     fun call(phoneNumber: String) {
-        doCall(phoneNumber)
+        val intent = Intent(Intent.ACTION_DIAL)
+        val data = Uri.parse("tel:$phoneNumber")
+        intent.data = data
+        mActivity.get()?.startActivity(intent)
     }
 
     @JavascriptInterface
@@ -65,13 +68,6 @@ class CommonJsBridge(activity: Activity) {
         }
     }
 
-    open fun doCall(phoneNumber: String) {
-        val intent = Intent(Intent.ACTION_DIAL)
-        val data = Uri.parse("tel:$phoneNumber")
-        intent.data = data
-        mActivity.get()?.startActivity(intent)
-    }
-
-    open fun handleWebMessage(json: String) = false
+    protected open fun handleWebMessage(json: String) = false
 
 }

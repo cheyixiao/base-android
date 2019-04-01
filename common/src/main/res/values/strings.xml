@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">common</string>
+    <string name="to_grant">去允许</string>
+    <string name="phone_code">电话</string>
+    <string name="to_permission_setting_tips">未取得您的%s权限，请前往应用权限设置打开权限。</string>
+    <string name="location">位置</string>
+    <string name="storage">存储</string>
+    <string name="camera">相机</string>
 </resources>
