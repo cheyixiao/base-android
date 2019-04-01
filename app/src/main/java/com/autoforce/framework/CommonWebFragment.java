@@ -1,21 +1,20 @@
 package com.autoforce.framework;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+import com.autoforce.common.utils.MD5Util;
+import com.autoforce.common.web.AbstractWebFragment;
+import com.autoforce.common.web.LruWebCacheImpl;
+import com.autoforce.common.web.WebCacheStrategy;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by xlh on 2019/3/19.
  * description:
  */
-public class CommonWebFragment extends Fragment {
+public class CommonWebFragment extends AbstractWebFragment {
 
     private static final String URL_KEY = "url";
+    private static final String SUB_PREFIX = "ixiao/";
 
     public static CommonWebFragment newInstance(String url) {
         CommonWebFragment fragment = new CommonWebFragment();
@@ -28,12 +27,41 @@ public class CommonWebFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        WebView webView = new WebView(getContext());
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(getArguments().getString(URL_KEY));
-        return webView;
+    protected void webSet() {
+        super.webSet();
+    }
+
+    @Override
+    protected String getUrl() {
+        return getArguments().getString(URL_KEY);
+    }
+
+    @Override
+    protected boolean isInterceptRequest() {
+        return true;
+    }
+
+    @Override
+    protected WebCacheStrategy getCacheStrategy() {
+
+        return new LruWebCacheImpl(getArguments().getString(URL_KEY), getActivity()) {
+            @NotNull
+            @Override
+            public String getFileKey(@NotNull String url) {
+
+                int postIndex = url.indexOf("?");
+                int preIndex = url.indexOf(SUB_PREFIX);
+
+                if (preIndex != -1) {
+                    preIndex = SUB_PREFIX.length() + preIndex;
+                } else {
+                    preIndex = 0;
+                }
+
+                String subStr = url.substring(preIndex, postIndex);
+                return MD5Util.md5(subStr);
+            }
+        };
     }
 }

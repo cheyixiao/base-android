@@ -1,1 +1,3 @@
-include ':app'
+include ':app', ':statusbar_lib', ':umeng', ':common'
+
+

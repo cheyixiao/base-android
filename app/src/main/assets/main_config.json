@@ -11,7 +11,7 @@
       "textSize": 20,
       "drawablePadding": 5,
       "iconPosition": "top",
-      "webUrl": "https://www.baidu.com/",
+      "webUrl": "file:///android_asset/test.html",
       "imageRatio": 0.67,
       "pageName": ""
     },
@@ -24,7 +24,7 @@
       "textSize": 20,
       "drawablePadding": 5,
       "iconPosition": "top",
-      "webUrl": "",
+      "webUrl": "file:///data/data/com.autoforce.framework/files/test.html",
       "imageRatio": 0.67,
       "pageName": ""
     },
@@ -37,7 +37,20 @@
       "textSize": 20,
       "drawablePadding": 5,
       "iconPosition": "top",
-      "webUrl": "",
+      "webUrl": "https://cdn.autoforce.net/ixiao/app/cyx-h5/v1.0.96/saler/sourceDetail.html#/sourceDetail?token=saCqL5RfUvHS&saler=64273&role=1&cert_code=2&decid=863549036866228&isLink=1&id=149985",
+      "imageRatio": 0.67,
+      "pageName": ""
+    },
+    {
+      "tabName": "我的",
+      "iconUnchecked": "ic_mine_unchecked.png",
+      "iconChecked": "ic_mine_checked.png",
+      "textColorChecked": "#D5001C",
+      "textColorUnchecked": "#666666",
+      "textSize": 20,
+      "drawablePadding": 5,
+      "iconPosition": "top",
+      "webUrl": "https://cdn.autoforce.net/ixiao/app/cyx-h5/v1.0.96/saler/mobileIndex.html#/userMobile/setting?token=iM3HngTMR2wN&saler=72043&role=1&cert_code=2&decid=863549036866228&isLink=1&bindPhone=18895613011&version=2.0.8.2",
       "imageRatio": 0.67,
       "pageName": ""
     }

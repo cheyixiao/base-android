@@ -33,6 +33,7 @@ dependencies {
     implementation deps.supportCompat
     implementation deps.supportConstraint
     implementation deps.picasso
+    implementation project(':common')
     testImplementation 'junit:junit:4.12'
     implementation deps.gson
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

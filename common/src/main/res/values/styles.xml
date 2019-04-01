@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="horizontal_progress_style" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_bar_layer_list</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_layer_list</item>
+        <item name="android:minHeight">1dp</item>
+    </style>
+</resources>

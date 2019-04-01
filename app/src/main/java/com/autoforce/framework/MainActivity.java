@@ -14,6 +14,10 @@ import com.autoforce.framework.component.MainTabGroup;
 import com.autoforce.framework.config.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by xialihao on 2018/11/15.
  */
@@ -41,9 +45,28 @@ public class MainActivity extends AppCompatActivity implements OnMainConfigCallb
 
         this.savedInstanceState = savedInstanceState;
 
-        bindViews();
+        copyHtmlToInternal();
 
+        bindViews();
         mConfigResolver.loadTabsInfo(this, null);
+    }
+
+    private void copyHtmlToInternal() {
+
+        try {
+            InputStream is = getAssets().open("test.html");
+            FileOutputStream fos = openFileOutput("test.html", MODE_PRIVATE);
+            byte[] buff = new byte[1024];
+            int len;
+            while ((len = is.read(buff)) != -1) {
+                fos.write(buff, 0, len);
+            }
+            fos.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

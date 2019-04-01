@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_webView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- <include layout="@layout/view_toolbar"></include>-->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/horizontal_progress_style"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+
+    <com.autoforce.common.web.AutoForceWebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" />
+</LinearLayout>
