@@ -1,6 +1,5 @@
 package com.autoforce.common.web;
 
-import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,23 +8,16 @@ import android.support.v4.app.Fragment;
 import android.view.*;
 import android.widget.ProgressBar;
 import com.autoforce.common.R;
-import com.orhanobut.logger.Logger;
-import com.tencent.smtt.export.external.interfaces.SslError;
-import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * Created by xlh on 2019/3/19.
  * description:
- * 1. 提供onResume()、onPause()供web端使用
- * 2. 提供了自定义拦截WebView资源的缓存策略
- * 3. 支持web端通过scheme链接跳转App应用市场
- * 4. 为web端提供一些常用需原生支持的功能：例如拨打电话等
+ * 1. 提供了自定义拦截WebView资源的缓存策略
+ * 2. 支持web端通过scheme链接跳转App应用市场
+ * 3. 为web端提供一些常用需原生支持的功能：例如拨打电话等
  */
 public abstract class AbstractWebFragment extends Fragment {
 
@@ -86,25 +78,8 @@ public abstract class AbstractWebFragment extends Fragment {
 
         mWebView.addJavascriptInterface(getBridgeObject(), getBridgeName());
 
-        mWebView.loadUrl(getUrl());
+        mWebView.loadUrl(getPageUrl());
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mWebView != null) {
-            mWebView.loadUrl("javascript:onResume()");
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (mWebView != null) {
-            mWebView.loadUrl("javascript:onPause()");
-        }
     }
 
     @Override
@@ -131,7 +106,7 @@ public abstract class AbstractWebFragment extends Fragment {
     }
 
     protected WebCacheStrategy getCacheStrategy() {
-        return new LruWebCacheImpl(getUrl(), getActivity());
+        return new LruWebCacheImpl(getPageUrl(), getActivity());
     }
 
     protected AutoForceWebClient getWebViewClient() {
@@ -148,5 +123,5 @@ public abstract class AbstractWebFragment extends Fragment {
 
 
     /*h5网页链接*/
-    protected abstract String getUrl();
+    protected abstract String getPageUrl();
 }

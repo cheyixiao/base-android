@@ -219,7 +219,7 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
             listView.adapter =
                     object : ArrayAdapter<String>(context, R.layout.array_adapter_text_view, configs.stringArray) {
 
-                        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+                        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                             val view = super.getView(position, convertView, parent)
 
                             val textView: TextView = view.findViewById(R.id.text1)

@@ -33,7 +33,7 @@ public class CommonWebFragment extends AbstractWebFragment {
     }
 
     @Override
-    protected String getUrl() {
+    protected String getPageUrl() {
         return getArguments().getString(URL_KEY);
     }
 

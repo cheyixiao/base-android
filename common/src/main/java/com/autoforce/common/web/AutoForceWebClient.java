@@ -61,14 +61,14 @@ public class AutoForceWebClient extends WebViewClient {
     }
 
     @Override
-    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
-        sslErrorHandler.proceed();
+    public void onReceivedError(WebView webView, int errorCode, String description, String failingUrl) {
+
+
     }
 
     @Override
-    public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-        super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
-
+    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+        sslErrorHandler.proceed();
     }
 
     @Override
@@ -84,7 +84,7 @@ public class AutoForceWebClient extends WebViewClient {
             Uri uri = Uri.parse(s);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             webView.getContext().startActivity(intent);
-        }else {
+        } else {
             webView.loadUrl(s);
         }
 

@@ -47,8 +47,8 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.umeng.sdk:push-huawei:1.0.0'
-    implementation 'com.umeng.sdk:push-xiaomi:1.0.0'
-    implementation 'com.umeng.umsdk:common:1.5.4'
-    implementation 'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.umeng.sdk:push-huawei:1.0.0'
+    api 'com.umeng.sdk:push-xiaomi:1.0.0'
+    api 'com.umeng.umsdk:common:1.5.4'
+    api 'com.umeng.umsdk:analytics:7.5.4'
 }

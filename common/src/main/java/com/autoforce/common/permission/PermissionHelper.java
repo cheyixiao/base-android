@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import com.autoforce.common.R;
 import com.autoforce.common.utils.AppMessageUtils;
 import com.autoforce.common.utils.SpUtils;
 import com.autoforce.common.utils.StringUtils;
 import com.autoforce.common.view.dialog.CustomerDialog;
+import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -25,7 +28,7 @@ import java.util.Set;
 public class PermissionHelper {
 
     private final RxPermissions mRxPermissions;
-    private final FragmentActivity mActivity;
+    private final WeakReference<FragmentActivity> mActivity;
     // 申请的权限组
     private final String[] mPermissionArray;
     // 待申请的权限是否是强制性获取
@@ -37,7 +40,7 @@ public class PermissionHelper {
 
     private PermissionHelper(Builder builder) {
         this.mRxPermissions = builder.rxPermissions;
-        this.mActivity = builder.activity;
+        this.mActivity = new WeakReference<>(builder.activity);
         this.mPermissionArray = builder.permissionArray;
         this.isForceRequest = builder.isForceRequest;
         this.mRequestTips = builder.requestTips;
@@ -46,34 +49,50 @@ public class PermissionHelper {
 
     public void request() {
 
-        if (mPermissionArray == null) {
-            throw new RuntimeException("You must set request permissions");
-        }
-
-        // 所需申请的权限都已被授予  回调申请成功并返回
-        if (isGrant(mPermissionArray)) {
-            if (mCallback != null) {
-                mCallback.onPermissionGranted();
-            }
+        if (mActivity.get() == null) {
             return;
         }
 
+        mActivity.get().runOnUiThread(() -> {
 
-        // 所申请权限被拒，并且勾选了不再提示，直接显示前往设置页面对话框
-        if (checkShowToSettingDialog(mActivity, mPermissionArray)) {
-            showToSettingDialog();
-        } else {
+                    if (mActivity.get() == null) {
+                        return;
+                    }
 
-            /* **权限可被申请** */
+                    if (mPermissionArray == null) {
+                        throw new RuntimeException("You must set request permissions");
+                    }
 
-            // 需要显示前置权限引导对话框
-            if (mRequestTips != null) {
-                showPermissionRequestDialog(mRequestTips);
-            } else {
-                // 不需引导对话框，直接申请
-                requestInternal();
-            }
-        }
+                    // 所需申请的权限都已被授予  回调申请成功并返回
+                    if (isGrant(mPermissionArray)) {
+                        if (mCallback != null) {
+                            mCallback.onPermissionGranted();
+                        }
+                        return;
+                    }
+
+                    Logger.e("PermissionHelper before checkShowToSettingDialog");
+
+                    // 所申请权限被拒，并且勾选了不再提示，直接显示前往设置页面对话框
+                    if (checkShowToSettingDialog(mActivity.get(), mPermissionArray)) {
+                        showToSettingDialog();
+                    } else {
+
+                        /* **权限可被申请** */
+
+                        // 需要显示前置权限引导对话框
+                        if (mRequestTips != null) {
+                            showPermissionRequestDialog(mRequestTips);
+                        } else {
+                            // 不需引导对话框，直接申请
+                            requestInternal();
+                        }
+                    }
+
+                }
+        );
+
+
     }
 
     /**
@@ -169,7 +188,7 @@ public class PermissionHelper {
 
     private void showPermissionRequestDialog(String info) {
 
-        CustomerDialog.Builder builder = new CustomerDialog.Builder(mActivity)
+        CustomerDialog.Builder builder = new CustomerDialog.Builder(mActivity.get())
                 .setContent(info)
                 .setTextSize(16)
                 .setPositiveButton(R.string.to_grant, (v -> requestInternal()))
@@ -185,7 +204,7 @@ public class PermissionHelper {
 
     private void showToSettingDialog() {
 
-        CustomerDialog.Builder builder = new CustomerDialog.Builder(mActivity)
+        CustomerDialog.Builder builder = new CustomerDialog.Builder(mActivity.get())
                 .setContent(getPermissionSettingRequestTips(mPermissionArray))
                 .setTextSize(14)
                 .setPositiveButton(R.string.to_grant, (v -> {
@@ -208,10 +227,10 @@ public class PermissionHelper {
     private void goApplicationSetting() {
 
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", AppMessageUtils.getAppPackageName(mActivity), null);
+        Uri uri = Uri.fromParts("package", AppMessageUtils.getAppPackageName(mActivity.get()), null);
         intent.setData(uri);
 
-        ActivityLauncher.init(mActivity)
+        ActivityLauncher.init(mActivity.get())
                 .startActivityForResult(intent, (resultCode, data) -> {
                     if (isForceRequest) {
                         request();
@@ -294,6 +313,12 @@ public class PermissionHelper {
         public PermissionHelper build(FragmentActivity activity) {
             rxPermissions = new RxPermissions(activity);
             this.activity = activity;
+            return new PermissionHelper(this);
+        }
+
+        public PermissionHelper build(Fragment fragment) {
+            rxPermissions = new RxPermissions(fragment);
+            this.activity = fragment.getActivity();
             return new PermissionHelper(this);
         }
     }

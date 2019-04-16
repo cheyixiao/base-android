@@ -31,4 +31,25 @@
     </declare-styleable>
     <!--RoundedImageView-->
 
+    <!--CustomerSpinner-->
+    <declare-styleable name="CustomerSpinner">
+        <attr name="spinner_style" format="enum">
+            <enum name="remote" value="0" />
+            <enum name="adjacent" value="1" />
+        </attr>
+        <attr name="spinner_text" format="reference|string" />
+        <attr name="spinner_src" format="reference" />
+        <attr name="content_height" format="dimension|reference" />
+        <attr name="spinner_textSize" format="dimension" />
+        <attr name="spinner_texColor" format="color|reference" />
+        <attr name="spinner_duration" format="integer" />
+        <attr name="spacing" format="dimension|reference" />
+        <attr name="spinner_textStyle" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="fakeBold" value="2" />
+        </attr>
+    </declare-styleable>
+    <!--CustomerSpinner-->
+
 </resources>

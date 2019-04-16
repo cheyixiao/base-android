@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.media.ExifInterface;
+import android.support.v4.app.Fragment;
 
 import java.io.*;
 
@@ -37,6 +38,29 @@ public class PhotoUtil {
         }
     }
 
+    public static void takePhoto(Fragment fragment, Uri imageUri, int requestCode) {
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//7.0的时候添加表示 对目标应用临时授权该Uri所代表的文件
+        }
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        if (fragment != null) {
+            fragment.startActivityForResult(intent, requestCode);
+        }
+    }
+
+//    public static Intent getPhotoTakeIntent(Uri imageUri) {
+//        Intent intent = new Intent();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//7.0的时候添加表示 对目标应用临时授权该Uri所代表的文件
+//        }
+//        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+//
+//        return intent;
+//    }
+
     /*
      * 打开相册 获取照片
      * @partm
@@ -49,6 +73,22 @@ public class PhotoUtil {
             activity.startActivityForResult(intent, requestCode);
         }
     }
+
+    public static void openAlbum(Fragment fragment, int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        if (fragment != null) {
+            fragment.startActivityForResult(intent, requestCode);
+        }
+    }
+
+
+//    public static Intent getOpenAlbumIntent() {
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("image/*");
+//
+//        return intent;
+//    }
 
 
     /*
