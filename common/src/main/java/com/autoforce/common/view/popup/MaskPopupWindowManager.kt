@@ -33,9 +33,15 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
 
         val anchorView = configs.anchorView ?: throw RuntimeException("Please set anchorView")
 
-        // 没有设置ContentView，则使用默认的ListView作为contentView
         if (configs.contentView == null) {
-            configs.contentView = getDefaultContentView(configs)
+            // 没有设置ContentView，则使用默认作为contentView
+            if (configs.layoutType == Builder.LAYOUT_GRID) {
+                if (mActivity != null) {
+                    configs.contentView = PopupGridView(mActivity!!, configs = configs)
+                }
+            } else {
+                configs.contentView = getDefaultContentView(configs)
+            }
         }
 
         initPopup(configs, anchorView)
@@ -47,12 +53,12 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
         anchorView: View
     ) {
         mPopupWindow =
-                PopupWindow(
-                    configs.contentView,
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    true
-                )
+            PopupWindow(
+                configs.contentView,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                true
+            )
 
         val wm = mActivity!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val height = wm.defaultDisplay.height
@@ -224,36 +230,36 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
             )
 
             listView.adapter =
-                    object : ArrayAdapter<String>(context, R.layout.array_adapter_text_view, configs.stringArray) {
+                object : ArrayAdapter<String>(context, R.layout.array_adapter_text_view, configs.stringArray) {
 
-                        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                            val view = super.getView(position, convertView, parent)
+                    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                        val view = super.getView(position, convertView, parent)
 
-                            val textView: TextView = view.findViewById(R.id.text1)
-                            textView.setBackgroundResource(R.drawable.list_mask_popup_bg)
-                            textView.gravity = Gravity.CENTER_VERTICAL
-                            textView.height = DeviceUtil.dip2px(context, 40f)
-                            val paddingRight = DeviceUtil.dip2px(context, 16f)
-                            textView.setPadding(
-                                textView.paddingLeft,
-                                textView.paddingTop,
-                                paddingRight,
-                                textView.paddingBottom
-                            )
+                        val textView: TextView = view.findViewById(R.id.text1)
+                        textView.setBackgroundResource(R.drawable.list_mask_popup_bg)
+                        textView.gravity = Gravity.CENTER_VERTICAL
+                        textView.height = DeviceUtil.dip2px(context, 40f)
+                        val paddingRight = DeviceUtil.dip2px(context, 16f)
+                        textView.setPadding(
+                            textView.paddingLeft,
+                            textView.paddingTop,
+                            paddingRight,
+                            textView.paddingBottom
+                        )
 
-                            if (configs.selectedPos == position) {
-                                textView.setTextColor(ContextCompat.getColor(context, R.color.redD5))
-                                val drawable: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_list_check)!!
-                                drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-                                textView.setCompoundDrawables(null, null, drawable, null)
-                            } else {
-                                textView.setTextColor(ContextCompat.getColor(context, R.color.black26))
-                                textView.setCompoundDrawables(null, null, null, null)
-                            }
-
-                            return view
+                        if (configs.selectedPos == position) {
+                            textView.setTextColor(ContextCompat.getColor(context, R.color.redD5))
+                            val drawable: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_list_check)!!
+                            drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
+                            textView.setCompoundDrawables(null, null, drawable, null)
+                        } else {
+                            textView.setTextColor(ContextCompat.getColor(context, R.color.black26))
+                            textView.setCompoundDrawables(null, null, null, null)
                         }
+
+                        return view
                     }
+                }
 
             configs.footerView?.let {
                 listView.addFooterView(configs.footerView)
