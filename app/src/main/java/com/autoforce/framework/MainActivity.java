@@ -2,17 +2,24 @@ package com.autoforce.framework;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.*;
 import android.widget.Toast;
+import com.autoforce.common.utils.DrawableUtils;
 import com.autoforce.common.view.tab.MainTabGroup;
+import com.autoforce.common.view.tab.MainTabInterface;
 import com.autoforce.common.view.tab.config.ConfigUtils;
 import com.autoforce.framework.config.*;
+import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileOutputStream;
@@ -114,7 +121,34 @@ public class MainActivity extends AppCompatActivity implements OnMainConfigCallb
     @Override
     public void onConfigDataGot(@NotNull MainConfigResult config) {
 
-        mRgMain.setData(config);
+        mRgMain.setData(config, iconPath -> {
+            try {
+                if (!TextUtils.isEmpty(iconPath)) {
+                    // 网络图片
+                    if (iconPath.startsWith("http")) {
+                        Bitmap bitmap = Picasso.get().load(iconPath).get();
+                        return new BitmapDrawable(getResources(), bitmap);
+                    } else {
+                        // 本地drawable图片
+                        int index = iconPath.lastIndexOf(".");
+                        String name = iconPath;
+                        if (index != -1) {
+                            name = iconPath.substring(0, index);
+                        }
+
+                        int resourceId = DrawableUtils.getImageResourceId(MainActivity.this, name);
+                        if (resourceId != 0) {
+                            return ContextCompat.getDrawable(MainActivity.this, resourceId);
+                        }
+                    }
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        });
 
         int index;
         if (savedInstanceState != null) {

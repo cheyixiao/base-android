@@ -59,6 +59,10 @@ public class CommonWebFragment extends AbstractWebFragment {
                     preIndex = 0;
                 }
 
+                if (postIndex == -1){
+                    postIndex = url.length();
+                }
+
                 String subStr = url.substring(preIndex, postIndex);
                 return MD5Util.md5(subStr);
             }

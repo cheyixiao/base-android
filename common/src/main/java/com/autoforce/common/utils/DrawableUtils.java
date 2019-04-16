@@ -1,5 +1,6 @@
 package com.autoforce.common.utils;
 
+import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
@@ -35,24 +36,26 @@ public class DrawableUtils {
         }
     }
 
-    public static int getImageResourceId(String name) {
+    public static int getImageResourceId(Context context, String name) {
         //默认的id
-        int resId = -1;
-        try {
-            Class<R.drawable> clazz = R.drawable.class;
+//        int resId = -1;
+//        try {
+//            Class<R.drawable> clazz = R.drawable.class;
+//
+//            Constructor<R.drawable> constructor = clazz.getDeclaredConstructor();
+//            constructor.setAccessible(true);
+//            R.drawable drawables = constructor.newInstance();
+//
+//            //根据字符串字段名，取字段//根据资源的ID的变量名获得Field的对象,使用反射机制来实现的
+//            java.lang.reflect.Field field = clazz.getField(name);
+//            //取值
+//            resId = (Integer) field.get(drawables);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return resId;
 
-            Constructor<R.drawable> constructor = clazz.getDeclaredConstructor();
-            constructor.setAccessible(true);
-            R.drawable drawables = constructor.newInstance();
-
-            //根据字符串字段名，取字段//根据资源的ID的变量名获得Field的对象,使用反射机制来实现的
-            java.lang.reflect.Field field = clazz.getField(name);
-            //取值
-            resId = (Integer) field.get(drawables);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return resId;
+        return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
     }
 
 

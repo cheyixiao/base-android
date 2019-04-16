@@ -32,6 +32,8 @@ import java.util.List;
  */
 public class MainTabGroup extends RadioGroup {
 
+    private MainTabInterface mTabInterface;
+
     public MainTabGroup(Context context) {
         super(context);
     }
@@ -40,7 +42,9 @@ public class MainTabGroup extends RadioGroup {
         super(context, attrs);
     }
 
-    public void setData(MainConfigResult config) {
+    public void setData(MainConfigResult config, MainTabInterface tabInterface) {
+
+        this.mTabInterface = tabInterface;
 
         // 移除掉之前已经存在的所有子View，防止干扰
         removeAllViews();
@@ -88,8 +92,13 @@ public class MainTabGroup extends RadioGroup {
         String iconUnchecked = info.getIconUnchecked();
         String iconChecked = info.getIconChecked();
 
-        Drawable uncheckedDrawable = getIconDrawable(iconUnchecked);
-        Drawable checkedDrawable = getIconDrawable(iconChecked);
+        Drawable uncheckedDrawable = null;
+        Drawable checkedDrawable = null;
+
+        if (mTabInterface != null) {
+            uncheckedDrawable = mTabInterface.getIconDrawable(iconUnchecked);
+            checkedDrawable = mTabInterface.getIconDrawable(iconChecked);
+        }
 
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_checked}, checkedDrawable);
@@ -168,38 +177,4 @@ public class MainTabGroup extends RadioGroup {
         });
     }
 
-    /**
-     * 获取图片Drawable
-     *
-     * @param iconPath
-     * @return
-     */
-    private Drawable getIconDrawable(String iconPath) {
-        try {
-            if (!TextUtils.isEmpty(iconPath)) {
-                // 网络图片
-                if (iconPath.startsWith("http")) {
-                    Bitmap bitmap = Picasso.get().load(iconPath).get();
-                    return new BitmapDrawable(getResources(), bitmap);
-                } else {
-                    // 本地drawable图片
-                    int index = iconPath.lastIndexOf(".");
-                    String name = iconPath;
-                    if (index != -1) {
-                        name = iconPath.substring(0, index);
-                    }
-
-                    int resourceId = DrawableUtils.getImageResourceId(name);
-                    if (resourceId != -1) {
-                        return ContextCompat.getDrawable(getContext(), resourceId);
-                    }
-                }
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }
