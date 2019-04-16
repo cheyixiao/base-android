@@ -115,6 +115,11 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
 
         private var params: Params = Params()
 
+        companion object {
+            const val LAYOUT_GRID = 1
+            const val LAYOUT_LIST = 2
+        }
+
         fun setOnDismissListener(listener: OnDismissListener): Builder {
             params.onDismissListener = listener
             return this
@@ -176,6 +181,8 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
         var footerView: View? = null
         var dividerHeight: Float = 0.5f
         var showCount: Int = 4
+        var layoutType: Int = Builder.LAYOUT_LIST
+        val spanCount: Int = 3
     }
 
     @SuppressLint("ViewConstructor")
@@ -263,6 +270,39 @@ class MaskPopupWindowManager(params: MaskPopupWindowManager.Params, private var 
 
                 mPopupWindow?.dismiss()
             }
+
+            setOnClickListener {
+                mPopupWindow?.dismiss()
+            }
+        }
+    }
+
+    // 在PopupWindow中显示九宫格布局
+    inner class PopupGridView(context: Context?, attrs: AttributeSet? = null, configs: MaskPopupWindowManager.Params) :
+        LinearLayout(context, attrs) {
+
+        init {
+            initGrid(context, configs)
+        }
+
+        private fun initGrid(
+            context: Context?,
+            configs: Params
+        ) {
+
+            orientation = VERTICAL
+            val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            inflater.inflate(R.layout.pop_filter_grid, this)
+
+            val gridView = FilterGridView(context, configs)
+            addView(gridView)
+
+            gridView.setOnItemClickListener(object : FilterGridView.OnItemClickListener {
+                override fun onItemClick(position: Int, text: String?) {
+                    configs.onItemClickListener?.onItemClick(position, text)
+                    mPopupWindow?.dismiss()
+                }
+            })
 
             setOnClickListener {
                 mPopupWindow?.dismiss()
