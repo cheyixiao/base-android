@@ -6,9 +6,9 @@ import java.util.List;
  * Created by xlh on 2019/4/17.
  * description:
  */
-public interface DataRequestCallback<T> {
+public interface DataRequestCallback<T extends StatusTypeInterface> {
 
-    void onDataGot(List<T> data, boolean isLoadMore);
+    void onDataGot(List<T> data);
 
-    void onDataError(boolean isLoadMore);
+    void onDataError();
 }

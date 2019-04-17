@@ -6,13 +6,13 @@ import java.util.List;
  * Created by xlh on 2019/4/17.
  * description:
  */
-public abstract class AbstractRefreshDataModel<T> implements IRefreshDataModel {
+public abstract class AbstractRefreshDataModel<T extends StatusTypeInterface> implements IRefreshDataModel {
 
     private final int pageStart;
     private int page;
-    private DataRequestCallback<T> callback;
+    private OnDataLoadCallback<T> callback;
 
-    public AbstractRefreshDataModel(int pageStart, DataRequestCallback<T> callback) {
+    public AbstractRefreshDataModel(int pageStart, OnDataLoadCallback<T> callback) {
         this.pageStart = pageStart;
         this.callback = callback;
     }
@@ -29,7 +29,7 @@ public abstract class AbstractRefreshDataModel<T> implements IRefreshDataModel {
         doRequest(page, new DataRequestCallback<T>() {
 
             @Override
-            public void onDataGot(List<T> data, boolean isLoadMore) {
+            public void onDataGot(List<T> data) {
 
                 if (callback != null) {
                     callback.onDataGot(data, isLoadMore);
@@ -37,7 +37,7 @@ public abstract class AbstractRefreshDataModel<T> implements IRefreshDataModel {
             }
 
             @Override
-            public void onDataError(boolean isLoadMore) {
+            public void onDataError() {
 
                 if (callback != null) {
                     callback.onDataError(isLoadMore);

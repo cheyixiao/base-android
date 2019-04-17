@@ -18,7 +18,7 @@ import java.util.List;
  * Created by xlh on 2019/4/17.
  * description:
  */
-public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> extends LinearLayoutCompat implements DataRequestCallback<T> {
+public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> extends LinearLayoutCompat implements OnDataLoadCallback<T> {
 
     protected SmartRefreshLayout mRefreshLayout;
     protected RecyclerView mRecyclerView;
@@ -142,7 +142,7 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
 
     protected abstract StatusAdapter<T> getAdapter();
 
-    protected abstract IRefreshDataModel generateDataModel(DataRequestCallback<T> callback);
+    protected abstract IRefreshDataModel generateDataModel(OnDataLoadCallback<T> callback);
 
     private void addChildView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.view_recycler, this);
