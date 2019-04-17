@@ -38,7 +38,6 @@ dependencies {
     api deps.supportDesign
     api deps.rx
     api deps.rxAndroid
-    api project(':statusbar_lib')
 //    todo:等重构完尝试将某些库改为implementation
     api project(':umeng')
     api deps.diskLruCache
