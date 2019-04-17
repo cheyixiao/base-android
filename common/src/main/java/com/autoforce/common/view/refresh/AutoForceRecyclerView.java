@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Created by xlh on 2019/4/17.
- * description:
+ * description: This abstract class can be inherited by subclass for showing  recyclerView in a variety of status.
  */
 public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> extends LinearLayoutCompat implements OnDataLoadCallback<T> {
 

@@ -46,5 +46,11 @@ public abstract class AbstractRefreshDataModel<T extends StatusTypeInterface> im
         });
     }
 
+    /**
+     * Do http request and transform data by callback.
+     *
+     * @param page
+     * @param callback
+     */
     public abstract void doRequest(int page, DataRequestCallback callback);
 }

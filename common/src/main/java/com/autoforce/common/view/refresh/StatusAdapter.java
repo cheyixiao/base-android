@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by xialihao on 2018/12/8.
+ * description: An RecyclerView's adapter for showing  different status.
  */
 public abstract class StatusAdapter<T extends StatusTypeInterface> extends RecyclerView.Adapter<BaseHolder<T>> {
 
@@ -175,11 +176,11 @@ public abstract class StatusAdapter<T extends StatusTypeInterface> extends Recyc
      */
     public abstract int getLayoutId(int viewType);
 
-    protected int getNoDataLayoutId(){
+    protected int getNoDataLayoutId() {
         return R.layout.viewstub_list_empty;
     }
 
-    protected int getNoNetworkLayoutId(){
+    protected int getNoNetworkLayoutId() {
         return R.layout.viewstub_list_error;
     }
 
