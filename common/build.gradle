@@ -39,7 +39,7 @@ dependencies {
     api deps.rx
     api deps.rxAndroid
 //    todo:等重构完尝试将某些库改为implementation
-    api project(':umeng')
+//    api project(':umeng')
     api deps.diskLruCache
     api deps.retrofit
     api deps.retrofitGson
