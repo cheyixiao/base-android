@@ -7,4 +7,6 @@ package com.autoforce.common.view.refresh;
 public interface IRefreshDataModel {
 
     void loadData(boolean isLoadMore);
+
+    void loadCacheData();
 }

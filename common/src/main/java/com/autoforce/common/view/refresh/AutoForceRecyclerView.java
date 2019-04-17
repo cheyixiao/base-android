@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import com.autoforce.common.R;
+import com.autoforce.common.utils.NetUtils;
 import com.autoforce.common.utils.ToastUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -84,6 +85,13 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
         }
     }
 
+    public void loadCacheData() {
+
+        if (mDataModel != null) {
+            mDataModel.loadCacheData();
+        }
+    }
+
     @Override
     public void onDataGot(List<T> data, boolean isLoadMore) {
 
@@ -130,6 +138,24 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
         }
     }
 
+    @Override
+    public void onCacheDataGot(List<T> data) {
+
+        if (data != null){
+            mAdapter.setInfos(data);
+        }
+
+        if (NetUtils.isConnected(getContext())) {
+            mRefreshLayout.autoRefresh(300);
+        } else {
+            ToastUtil.showToast(R.string.warning);
+            if (data == null || data.isEmpty()) {
+                mAdapter.showNoNetWork();
+            }
+        }
+
+    }
+
     private void initRecyclerView() {
 
         mRecyclerView.setLayoutManager(getLayoutManager());
@@ -143,6 +169,15 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
     protected abstract StatusAdapter<T> getAdapter();
 
     protected abstract IRefreshDataModel generateDataModel(OnDataLoadCallback<T> callback);
+
+    /**
+     * Whether to cache list data on disk.
+     *
+     * @return true-cache data on disk; false-don't cache data
+     */
+    public boolean isCache() {
+        return false;
+    }
 
     private void addChildView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.view_recycler, this);

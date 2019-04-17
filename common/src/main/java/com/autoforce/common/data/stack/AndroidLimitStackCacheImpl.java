@@ -1,4 +1,4 @@
-package com.autoforce.common.data;
+package com.autoforce.common.data.stack;
 
 import android.content.Context;
 import android.content.SharedPreferences;

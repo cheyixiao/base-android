@@ -11,4 +11,6 @@ public interface OnDataLoadCallback<T extends StatusTypeInterface> {
     void onDataGot(List<T> data, boolean isLoadMore);
 
     void onDataError(boolean isLoadMore);
+
+    void onCacheDataGot(List<T> data);
 }
