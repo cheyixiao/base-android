@@ -88,10 +88,23 @@ public abstract class AbstractRefreshDataModel<T extends StatusTypeInterface> im
 
         if (mFileCache != null && callback != null) {
             String cacheJson = mFileCache.getCacheJson(getKey());
-            List<T> cacheData = processCacheJson(cacheJson);
-            if (cacheData != null) {
-                callback.onCacheDataGot(cacheData);
+
+            if (TextUtils.isEmpty(cacheJson)) {
+                callback.onCacheDataGot(null);
+                return;
             }
+
+            // clear cached json when an error occurs.
+            try {
+                List<T> cacheData = processCacheJson(cacheJson);
+                if (cacheData != null) {
+                    callback.onCacheDataGot(cacheData);
+                }
+            } catch (Exception e) {
+                mFileCache.saveJson(getKey(), "");
+                callback.onCacheDataGot(null);
+            }
+
         }
     }
 
