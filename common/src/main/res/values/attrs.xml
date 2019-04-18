@@ -52,4 +52,10 @@
     </declare-styleable>
     <!--CustomerSpinner-->
 
+    <!--DecimalEditText-->
+    <declare-styleable name="DecimalEditText">
+        <attr name="decimalLength" format="integer"/>
+    </declare-styleable>
+    <!--DecimalEditText-->
+
 </resources>
