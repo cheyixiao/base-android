@@ -11,9 +11,11 @@ import java.util.List;
 /**
  * Created by xlh on 2019/4/17.
  * description:
- * A data model for refresh. When you want to cache data on disk, please override such methods:
- * - getKey(): return data identifier
- * - processCacheJson(): to process cache json
+ * A data model for refresh. When you want to cache data on disk, please override such methods:<br/>
+ * - getKey(): return data identifier <br>
+ * - processCacheJson(): to process cache json<br>
+ *
+ * Also, in the subclass of AutoForceRecyclerView, you should override isCache() to make it return true.
  */
 public abstract class AbstractRefreshDataModel<T extends StatusTypeInterface> implements IRefreshDataModel {
 
