@@ -34,7 +34,7 @@ open class LruWebCacheImpl(private val loadUrl: String, context: Context) : WebC
             }
 
             //请求url的md5值，用作该文件在DiskLruCache操作的Key值
-            var fileKey = MD5Util.md5(fileUrl)
+            var fileKey = getFileKey(fileUrl)
 
             Log.e("interceptUrl -> ", fileUrl)
             Log.e("interceptUrl -> ", fileKey)

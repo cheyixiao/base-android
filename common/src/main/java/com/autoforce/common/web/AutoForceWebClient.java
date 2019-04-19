@@ -17,7 +17,7 @@ import com.tencent.smtt.sdk.WebViewClient;
  */
 public class AutoForceWebClient extends WebViewClient {
 
-    private WebCacheStrategy mWebCacheStrategy;
+    protected WebCacheStrategy mWebCacheStrategy;
     private boolean isInterceptRequest;
 
     public AutoForceWebClient(WebCacheStrategy strategy, boolean isInterceptRequest) {
@@ -74,7 +74,6 @@ public class AutoForceWebClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView webView, String s) {
         super.onPageFinished(webView, s);
-        Logger.e("onPageFinished...");
     }
 
     private boolean doOverrideUrlLoading(WebView webView, String s) {

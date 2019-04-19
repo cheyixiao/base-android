@@ -65,14 +65,7 @@ public abstract class AbstractWebFragment extends Fragment {
             @Override
             public void onProgressChanged(WebView webView, int newProgress) {
                 super.onProgressChanged(webView, newProgress);
-                if (mProgressBar != null) {
-                    if (newProgress != 100) {
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mProgressBar.setProgress(newProgress);
-                    } else {
-                        mProgressBar.setVisibility(View.GONE);
-                    }
-                }
+                showProgress(newProgress);
             }
         });
 
@@ -80,6 +73,17 @@ public abstract class AbstractWebFragment extends Fragment {
 
         mWebView.loadUrl(getPageUrl());
 
+    }
+
+    protected void showProgress(int newProgress) {
+        if (mProgressBar != null) {
+            if (newProgress != 100) {
+                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.setProgress(newProgress);
+            } else {
+                mProgressBar.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override

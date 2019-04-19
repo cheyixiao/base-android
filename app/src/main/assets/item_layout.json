@@ -1,0 +1,187 @@
+{
+  "widget": "android.widget.LinearLayout",
+  "properties": [
+    {
+      "name": "orientation",
+      "type": "integer",
+      "value": 1
+    },
+    {
+      "name": "layout_width",
+      "type": "dimen",
+      "value": "match_parent"
+    },
+    {
+      "name": "layout_height",
+      "type": "dimen",
+      "value": "wrap_content"
+    },
+    {
+      "name": "background",
+      "type": "drawable",
+      "value": {
+        "COLOR": "#ffffff",
+        "CORNER": "8dp"
+      }
+    },
+    {
+      "name": "layout_margin",
+      "type": "dimen",
+      "value": "16dp"
+    },
+    {
+      "name": "padding",
+      "type": "dimen",
+      "value": "8dp"
+    }
+  ],
+  "views": [
+    {
+      "widget": "android.widget.Button",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "40dp"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "value": "start SecondActivity"
+        }
+      ]
+    },
+    {
+      "widget": "android.widget.Button",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "40dp"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "value": "start ThirdActivity"
+        },
+        {
+          "name": "textAllCaps",
+          "type": "boolean",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "widget": "android.widget.ImageView",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "180dp"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "180dp"
+        },
+        {
+          "name": "src",
+          "type": "url",
+          "value": "https://www.baidu.com/img/bd_logo1.png"
+        },
+        {
+          "name": "layout_gravity",
+          "type": "string",
+          "value": "center_horizontal"
+        }
+      ]
+    },
+    {
+      "widget": "android.widget.LinearLayout",
+      "properties": [
+        {
+          "name": "orientation",
+          "type": "integer",
+          "value": 0
+        },
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "wrap_content"
+        }
+      ],
+      "views": [
+        {
+          "widget": "android.widget.Button",
+          "properties": [
+            {
+              "name": "layout_width",
+              "type": "dimen",
+              "value": "match_parent"
+            },
+            {
+              "name": "layout_height",
+              "type": "dimen",
+              "value": "40dp"
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "value": "start SecondActivity"
+            },
+            {
+              "name": "layout_weight",
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "widget": "android.widget.Button",
+          "properties": [
+            {
+              "name": "layout_width",
+              "type": "dimen",
+              "value": "match_parent"
+            },
+            {
+              "name": "layout_height",
+              "type": "dimen",
+              "value": "40dp"
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "value": "start ThirdActivity"
+            },
+            {
+              "name": "textAllCaps",
+              "type": "boolean",
+              "value": "false"
+            },
+            {
+              "name": "layout_weight",
+              "type": "float",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

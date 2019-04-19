@@ -2,14 +2,10 @@ package com.autoforce.common.view.tab;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -20,15 +16,17 @@ import com.autoforce.common.utils.DeviceUtil;
 import com.autoforce.common.utils.DrawableUtils;
 import com.autoforce.common.view.tab.config.ConfigUtils;
 import com.autoforce.common.view.tab.config.DefaultConfigs;
-import com.autoforce.framework.config.MainConfigResult;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
+import com.autoforce.common.view.tab.config.MainConfigResult;
 import java.util.List;
 
 /**
  * Created by xlh on 2019/3/19.
  * description:
+ *
+ * todo:
+ *      - 将切换fragment的代码挪动过来
+ *      - 对于已经预置打包然后动态更新的策略独立
+ *
  */
 public class MainTabGroup extends RadioGroup {
 

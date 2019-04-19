@@ -1,4 +1,4 @@
-package com.autoforce.framework.config
+package com.autoforce.common.view.tab.config
 
 import android.content.Context
 import android.text.TextUtils
@@ -35,7 +35,7 @@ class MainConfigResolver(private val mCallback: OnMainConfigCallback?) : MainCon
     }
 
     private fun loadFromAssets(context: Context) {
-        val json = AssetFileUtils.getJson(context, CONFIG_NAME)
+        val json = AssetFileUtils.getFile(context, CONFIG_NAME)
         processJson(json)
     }
 

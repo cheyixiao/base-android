@@ -1,4 +1,4 @@
-package com.autoforce.framework.config
+package com.autoforce.common.view.tab.config
 
 import com.google.gson.annotations.SerializedName
 

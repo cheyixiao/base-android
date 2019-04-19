@@ -1,6 +1,7 @@
-package com.autoforce.framework.config
+package com.autoforce.common.view.tab.config
 
 import android.content.Context
+import com.autoforce.common.view.tab.config.MainConfigResult
 
 /**
  * Created by xlh on 2019/3/18.

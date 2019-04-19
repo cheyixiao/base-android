@@ -15,8 +15,7 @@ import android.view.*;
 import android.widget.Toast;
 import com.autoforce.common.utils.DrawableUtils;
 import com.autoforce.common.view.tab.MainTabGroup;
-import com.autoforce.common.view.tab.config.ConfigUtils;
-import com.autoforce.framework.config.*;
+import com.autoforce.common.view.tab.config.*;
 import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 

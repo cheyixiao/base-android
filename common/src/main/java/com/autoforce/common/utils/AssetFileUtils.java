@@ -32,12 +32,12 @@ public class AssetFileUtils {
     }
 
     /**
-     * 获取assets目录下的json文件
+     * 获取assets目录下的文件内容
      * @param context
      * @param fileName
      * @return
      */
-    public static String getJson(Context context, String fileName) {
+    public static String getFile(Context context, String fileName) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
             AssetManager assetManager = context.getAssets();
