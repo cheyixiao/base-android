@@ -18,8 +18,8 @@ import java.util.List;
  * parse the json as a tree and create View with its dynamicProperties
  *
  * todo：
- *     - 基于现有代码进行使用
- *     - 支持递归
+ *     - 基于现有代码进行使用  ok
+ *     - 支持递归             ok
  *     - 编写由xml文件生成json文件的工具代码
  */
 public class DynamicView {

@@ -15,4 +15,6 @@ public class App extends Application {
 
         CommonAppDelegate.init(this);
     }
+
+
 }

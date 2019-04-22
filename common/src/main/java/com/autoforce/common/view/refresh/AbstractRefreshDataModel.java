@@ -116,7 +116,7 @@ public abstract class AbstractRefreshDataModel<T extends StatusTypeInterface> im
      */
     @NonNull
     protected FileCacheImpl getFileCache(Context context) {
-        return new FileCacheImpl(context, "common", "json");
+        return new FileCacheImpl(context, "common", "refresh");
     }
 
     protected String getKey() {
