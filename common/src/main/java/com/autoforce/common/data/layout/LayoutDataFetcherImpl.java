@@ -64,7 +64,7 @@ public abstract class LayoutDataFetcherImpl implements ILayoutDataFetcher {
 
         /*
          * 1. If the cache files exist, just read it. Otherwise, read it from assets.
-         * 2. In any case, do request from net to get server data to save.
+         * 2. In any case, do request to get server data to save .
          */
         String showJson;
         if (!isCached(url)) {
