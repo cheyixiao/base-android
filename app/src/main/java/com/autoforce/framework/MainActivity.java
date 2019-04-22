@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnMainConfigCallb
         copyHtmlToInternal();
 
         bindViews();
-        mConfigResolver.loadTabsInfo(this, null);
+        mConfigResolver.loadTabsInfo(this, "http://192.168.3.245:8080/main_config.json");
     }
 
     private void copyHtmlToInternal() {

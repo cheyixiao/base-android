@@ -1,8 +1,8 @@
 package com.autoforce.common.view.tab.config
 
 import android.content.Context
-import android.text.TextUtils
-import com.autoforce.common.utils.AssetFileUtils
+import com.autoforce.common.data.layout.ILayoutDataFetcher
+import com.autoforce.common.data.layout.LayoutDataFetcherImpl
 import com.google.gson.Gson
 
 /**
@@ -11,35 +11,27 @@ import com.google.gson.Gson
  */
 class MainConfigResolver(private val mCallback: OnMainConfigCallback?) : MainConfigResolveInterface {
 
+    private var fetcher: ILayoutDataFetcher? = null
+
     companion object {
         private const val CONFIG_NAME = "main_config.json"
     }
 
+
     override fun loadTabsInfo(context: Context, url: String?) {
 
-        if (TextUtils.isEmpty(url)) {
-            loadFromAssets(context)
-        } else {
-            loadFromNet(url!!)
+        if (fetcher == null) {
+            fetcher = object : LayoutDataFetcherImpl(context) {
+                override fun filenameInAssets() = CONFIG_NAME
+            }
         }
-    }
 
-    private fun loadFromNet(url: String) {
-
-        // 读取策略：当前显示的数据是上一次请求缓存的数据，并且每次都读取网络数据更新缓存
-        // 1. 是否存在缓存：没有则loadFromAssets()
-        // 2. 有缓存，则加载缓存
-        // 3. 无论是第1还是第2步，都需要去请求网络json更新缓存
-
+        processJson(fetcher?.getLayoutData(context, url))
 
     }
 
-    private fun loadFromAssets(context: Context) {
-        val json = AssetFileUtils.getFile(context, CONFIG_NAME)
-        processJson(json)
-    }
 
-    private fun processJson(json: String) {
+    private fun processJson(json: String?) {
 
         val config =
             Gson().fromJson(json, MainConfigResult::class.java)
