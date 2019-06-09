@@ -47,7 +47,7 @@ dependencies {
     api deps.picasso
     api deps.amap
     api deps.RxPermission
-    implementation deps.refreshLayout
+    api deps.refreshLayout
     implementation deps.spanny
     testImplementation 'junit:junit:4.12'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

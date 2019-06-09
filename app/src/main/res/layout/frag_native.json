@@ -1,0 +1,172 @@
+{
+  "widget": "LinearLayout",
+  "properties": [
+    {
+      "name": "layout_width",
+      "type": "dimen",
+      "value": "match_parent"
+    },
+    {
+      "name": "layout_height",
+      "type": "dimen",
+      "value": "match_parent"
+    },
+    {
+      "name": "layout_margin",
+      "type": "dimen",
+      "value": "16dp"
+    },
+    {
+      "name": "background",
+      "type": "drawable",
+      "value": "@drawable/bg_rectround_white_8dp"
+    },
+    {
+      "name": "orientation",
+      "value": "vertical"
+    },
+    {
+      "name": "padding",
+      "type": "dimen",
+      "value": "8dp"
+    }
+  ],
+  "views": [
+    {
+      "widget": "Button",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "wrap_content"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "value": "start secondActivity"
+        }
+      ]
+    },
+    {
+      "widget": "Button",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "wrap_content"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "value": "base-android"
+        },
+        {
+          "name": "textAllCaps",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "widget": "ImageView",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "180dp"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "180dp"
+        },
+        {
+          "name": "layout_gravity",
+          "value": "center_horizontal"
+        }
+      ]
+    },
+    {
+      "widget": "LinearLayout",
+      "properties": [
+        {
+          "name": "layout_width",
+          "type": "dimen",
+          "value": "match_parent"
+        },
+        {
+          "name": "layout_height",
+          "type": "dimen",
+          "value": "wrap_content"
+        },
+        {
+          "name": "orientation",
+          "value": "horizontal"
+        }
+      ],
+      "views": [
+        {
+          "widget": "Button",
+          "properties": [
+            {
+              "name": "layout_width",
+              "type": "dimen",
+              "value": "0dp"
+            },
+            {
+              "name": "layout_height",
+              "type": "dimen",
+              "value": "40dp"
+            },
+            {
+              "name": "layout_weight",
+              "value": "1"
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "value": "start"
+            }
+          ]
+        },
+        {
+          "widget": "Button",
+          "properties": [
+            {
+              "name": "layout_width",
+              "type": "dimen",
+              "value": "0dp"
+            },
+            {
+              "name": "layout_height",
+              "type": "dimen",
+              "value": "40dp"
+            },
+            {
+              "name": "layout_weight",
+              "value": "1"
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "value": "start ThirdActivity"
+            },
+            {
+              "name": "textAllCaps",
+              "value": "false"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -96,6 +96,11 @@ public class StringUtils {
         return map;
     }
 
+    public static String[] getStringArray(int arrayId){
+
+        return CommonAppDelegate.getContext().getResources().getStringArray(arrayId);
+    }
+
 //    public static String formatPrice(String price) {
 //¬
 //        if (TextUtils.isEmpty(price)) {

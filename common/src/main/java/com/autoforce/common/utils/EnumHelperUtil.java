@@ -17,4 +17,5 @@ public class EnumHelperUtil {
         return (T) clazz.getEnumConstants()[ordinal];
     }
 
+
 }

@@ -9,9 +9,13 @@ import android.view.LayoutInflater;
 import com.autoforce.common.R;
 import com.autoforce.common.utils.NetUtils;
 import com.autoforce.common.utils.ToastUtil;
+import com.orhanobut.logger.Logger;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 import java.util.List;
 
@@ -23,11 +27,18 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
 
     protected SmartRefreshLayout mRefreshLayout;
     protected RecyclerView mRecyclerView;
-    protected StatusAdapter<T> mAdapter = getAdapter();
+    protected StatusAdapter<T> mAdapter = generateAdapter();
     protected IRefreshDataModel mDataModel = generateDataModel(this);
+    protected CompositeDisposable mCompositeDisposable;
 
     public AutoForceRecyclerView(Context context) {
         this(context, null);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        unDispose();
+        super.onDetachedFromWindow();
     }
 
     public AutoForceRecyclerView(Context context, AttributeSet attrs) {
@@ -106,7 +117,7 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
             }
         } else {
 
-            if (mRefreshLayout.isRefreshing()) {
+            if (mRefreshLayout.getState() == RefreshState.Refreshing) {
                 mRefreshLayout.finishRefresh();
             }
 
@@ -141,12 +152,12 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
     @Override
     public void onCacheDataGot(List<T> data) {
 
-        if (data != null){
+        if (data != null) {
             mAdapter.setInfos(data);
         }
 
         if (NetUtils.isConnected(getContext())) {
-            mRefreshLayout.autoRefresh(300);
+            mRefreshLayout.autoRefresh();
         } else {
             ToastUtil.showToast(R.string.warning);
             if (data == null || data.isEmpty()) {
@@ -156,17 +167,36 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
 
     }
 
-    private void initRecyclerView() {
+    protected void initRecyclerView() {
 
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void addDispose(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+
+        //将所有 Disposable 放入集中处理
+        mCompositeDisposable.add(disposable);
+    }
+
+    /**
+     * 停止集合中正在执行的 RxJava 任务
+     */
+    public void unDispose() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();//保证 Activity 结束时取消所有正在执行的订阅
+        }
+        mCompositeDisposable = null;
     }
 
     protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(getContext());
     }
 
-    protected abstract StatusAdapter<T> getAdapter();
+    protected abstract StatusAdapter<T> generateAdapter();
 
     protected abstract IRefreshDataModel generateDataModel(OnDataLoadCallback<T> callback);
 
@@ -179,7 +209,23 @@ public abstract class AutoForceRecyclerView<T extends StatusTypeInterface> exten
         return false;
     }
 
-    private void addChildView(Context context) {
+    public void setEnableLoadMore(boolean enabled) {
+        mRefreshLayout.setEnableLoadMore(enabled);
+    }
+
+    public void setEnableRefresh(boolean enabled) {
+        mRefreshLayout.setEnableRefresh(enabled);
+    }
+
+    public StatusAdapter<T> getAdapter() {
+        return mAdapter;
+    }
+
+    public void autoRefresh() {
+        mRefreshLayout.autoRefresh();
+    }
+
+    protected void addChildView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.view_recycler, this);
     }
 }

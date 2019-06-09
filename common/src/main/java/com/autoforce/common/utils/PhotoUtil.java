@@ -133,7 +133,7 @@ public class PhotoUtil {
     }
 
     /*压缩图片 获取bitmap*/
-    public static Bitmap getBitmapFromUri(Context context, Uri uri) {
+    public static Bitmap compressImage(Context context, Uri uri) {
         if (uri == null) return null;
         try {
             InputStream input = context.getContentResolver().openInputStream(uri);
@@ -171,7 +171,7 @@ public class PhotoUtil {
             input = context.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
             input.close();
-            return commpressBitmap(bitmap);//再进行质量压缩
+            return compressBitmap(bitmap);//再进行质量压缩
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,11 +181,11 @@ public class PhotoUtil {
     }
 
     /*CoCo
-     * 循环压缩 直到到达图片的需求Sour
+     * 循环压缩 直到到达图片的需求
      * @partm
      */
 
-    private static Bitmap commpressBitmap(Bitmap bitmap) {
+    private static Bitmap compressBitmap(Bitmap bitmap) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
@@ -216,7 +216,6 @@ public class PhotoUtil {
             if (file.exists()) {
                 file.delete();
             }
-            file.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
             return file;

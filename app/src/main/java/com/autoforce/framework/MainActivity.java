@@ -28,7 +28,7 @@ import java.io.InputStream;
  */
 public class MainActivity extends AppCompatActivity implements OnMainConfigCallback {
 
-    private MainConfigResolveInterface mConfigResolver = new MainConfigResolver(this);
+    private MainConfigResolveInterface mConfigResolver = new MainConfigResolver(this, CONFIG_NAME);
     private MainTabGroup mRgMain;
     private int currentTabIndex = -1;
     private long exitTime = 0;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnMainConfigCallb
 
     private static final String FRAGMENT_TAG_PREFIX = "MainActivityFragment_";
     private static final String STATE_CURRENT_TAB_INDEX = "StateCurrentTabIndex";
+    private static final String CONFIG_NAME = "main_config.json";
 
     public static void start(Context context) {
 

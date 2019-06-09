@@ -46,12 +46,16 @@ public class BottomPopupWindowManager {
      * @param view 如果是Fragment，那么就是getView;如果是Activity，那么就是contentView
      */
     public void showPop(View view, boolean isBackgroundHalfTransparent) {
-        if(isBackgroundHalfTransparent) {
+        if (isBackgroundHalfTransparent) {
             WindowManager.LayoutParams params = mActivity.getWindow().getAttributes();
             params.alpha = 0.7f;
             mActivity.getWindow().setAttributes(params);
         }
-        window.showAtLocation(view, Gravity.BOTTOM, 0, DeviceUtil.getNavigationBarHeight(mActivity));
+
+        window.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//        window.showAtLocation(view, Gravity.BOTTOM, 0, DeviceUtil.getNavigationBarHeight(mActivity));
+        window.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
 
     public interface OnFinishInflateListener {

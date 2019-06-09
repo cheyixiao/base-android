@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">base-android</string>
     <string name="double_click_quit">再按一次返回键退出</string>
+    <string name="startThird">start ThirdActivity</string>
 </resources>

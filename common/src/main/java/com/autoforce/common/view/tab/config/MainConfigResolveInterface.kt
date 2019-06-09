@@ -1,7 +1,7 @@
 package com.autoforce.common.view.tab.config
 
 import android.content.Context
-import com.autoforce.common.view.tab.config.MainConfigResult
+import com.autoforce.common.view.tab.DrawableInterface
 
 /**
  * Created by xlh on 2019/3/18.

@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Method;
 
@@ -126,20 +127,26 @@ public class DeviceUtil {
         boolean hasNavigationBar = false;
         Resources rs = context.getResources();
         int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        Logger.e("11111111111111 -> id = " + id);
         if (id > 0) {
             hasNavigationBar = rs.getBoolean(id);
         }
+        Logger.e("222222   -> hasNavigationBar " + hasNavigationBar);
+
         try {
             Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
             Method m = systemPropertiesClass.getMethod("get", String.class);
             String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            Logger.e("navBarOverride " + navBarOverride);
             if ("1".equals(navBarOverride)) {
                 hasNavigationBar = false;
+                Logger.e("333333   -> hasNavigationBar " + hasNavigationBar);
             } else if ("0".equals(navBarOverride)) {
                 hasNavigationBar = true;
+                Logger.e("444444   -> hasNavigationBar " + hasNavigationBar);
             }
         } catch (Exception e) {
-
+            Logger.e(e.getMessage());
         }
         return hasNavigationBar;
     }

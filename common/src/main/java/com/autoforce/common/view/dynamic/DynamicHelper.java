@@ -653,10 +653,10 @@ public class DynamicHelper {
                     ((TextView) view).setText(property.getValueString());
                 }
                 break;
-                case REF: {
-                    ((TextView) view).setText(getStringId(view.getContext(), property.getValueString()));
-                }
-                break;
+//                case REF: {
+//                    ((TextView) view).setText(getStringId(view.getContext(), property.getValueString()));
+//                }
+//                break;
             }
         }
     }
@@ -752,13 +752,13 @@ public class DynamicHelper {
             TextView textView = (TextView) view;
             Drawable[] d = textView.getCompoundDrawables();
             switch (property.type) {
-                case REF: {
-                    try {
-                        d[position] = view.getContext().getResources().getDrawable(getDrawableId(view.getContext(), property.getValueString()));
-                    } catch (Exception e) {
-                    }
-                }
-                break;
+//                case REF: {
+//                    try {
+//                        d[position] = view.getContext().getResources().getDrawable(getDrawableId(view.getContext(), property.getValueString()));
+//                    } catch (Exception e) {
+//                    }
+//                }
+//                break;
                 case BASE64: {
                     d[position] = property.getValueBitmapDrawable();
                 }
@@ -783,10 +783,10 @@ public class DynamicHelper {
     public static void applySrc(Context context, View view, DynamicProperty property) {
         if (view instanceof ImageView) {
             switch (property.type) {
-                case REF: {
-                    ((ImageView) view).setImageResource(getDrawableId(view.getContext(), property.getValueString()));
-                }
-                break;
+//                case REF: {
+//                    ((ImageView) view).setImageResource(getDrawableId(view.getContext(), property.getValueString()));
+//                }
+//                break;
                 case BASE64: {
                     Log.e("cf", "applySrc :" + property.getValueString());
                     ((ImageView) view).setImageBitmap(property.getValueBitmap());

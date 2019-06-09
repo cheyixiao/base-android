@@ -1,11 +1,13 @@
 package com.autoforce.common.view.tab.config
 
+import android.support.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by xlh on 2019/3/18.
  * description:
  */
+@Keep
 class MainConfigResult {
     @SerializedName("layout_height")
     var layoutHeight: Float? = null
@@ -13,6 +15,7 @@ class MainConfigResult {
 
     var tabs: List<TabInfoBean>? = null
 
+    @Keep
     class TabInfoBean {
         var tabName: String? = null
         var iconUnchecked: String? = null

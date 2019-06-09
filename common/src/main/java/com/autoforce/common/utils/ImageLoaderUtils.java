@@ -12,6 +12,8 @@ import com.squareup.picasso.RequestCreator;
  */
 public class ImageLoaderUtils {
 
+    //todo: 将Callback使用自定义类型，否则还是强依赖与Picasso的实现
+
     /**
      * @param url              图片url
      * @param imageView        显示图片的ImageView
@@ -21,7 +23,7 @@ public class ImageLoaderUtils {
      */
     public static void loadImage(String url, ImageView imageView, int errorResId, int placeHolderResId, Callback callback) {
 
-        if (TextUtils.isEmpty(url)) {
+        if (TextUtils.isEmpty(url) || imageView == null) {
             return;
         }
 
@@ -36,33 +38,6 @@ public class ImageLoaderUtils {
         }
 
         creator.into(imageView, callback);
-    }
-
-
-    /**
-     * @param url              图片id
-     * @param imageView        显示图片的ImageView
-     * @param errorResId       加载错误占位符    没有传-1
-     * @param placeHolderResId 默认显示占位符 没有传-1
-     * @param callback         加载成功或失败回调   没有传null
-     */
-    public static void loadImage(int url, ImageView imageView, int errorResId, int placeHolderResId, Callback callback) {
-
-        try {
-            RequestCreator creator = Picasso.get().load(url);
-
-            if (errorResId != -1) {
-                creator.error(errorResId);
-            }
-
-            if (placeHolderResId != -1) {
-                creator.placeholder(placeHolderResId);
-            }
-
-            creator.into(imageView, callback);
-        } catch (Exception e) {
-
-        }
     }
 
 

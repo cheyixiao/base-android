@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 /**
  *  Created by xialihao on 2018/12/4.
  */
-class TimeButton(context: Context, attributeSet: AttributeSet? = null) : AppCompatTextView(context, attributeSet) {
+open class TimeButton(context: Context, attributeSet: AttributeSet? = null) : AppCompatTextView(context, attributeSet) {
 
     private var isCountDowning = false
 

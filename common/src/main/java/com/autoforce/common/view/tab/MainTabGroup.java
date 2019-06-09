@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class MainTabGroup extends RadioGroup {
 
-    private MainTabInterface mTabInterface;
+    private DrawableInterface mTabInterface;
 
     public MainTabGroup(Context context) {
         super(context);
@@ -40,7 +40,7 @@ public class MainTabGroup extends RadioGroup {
         super(context, attrs);
     }
 
-    public void setData(MainConfigResult config, MainTabInterface tabInterface) {
+    public void setData(MainConfigResult config, DrawableInterface tabInterface) {
 
         this.mTabInterface = tabInterface;
 

@@ -71,8 +71,6 @@ public class PermissionHelper {
                         return;
                     }
 
-                    Logger.e("PermissionHelper before checkShowToSettingDialog");
-
                     // 所申请权限被拒，并且勾选了不再提示，直接显示前往设置页面对话框
                     if (checkShowToSettingDialog(mActivity.get(), mPermissionArray)) {
                         showToSettingDialog();

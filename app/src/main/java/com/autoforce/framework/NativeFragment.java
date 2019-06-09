@@ -23,24 +23,25 @@ public class NativeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        ILayoutDataFetcher fetcher = new LayoutDataFetcherImpl(getContext()) {
-
-            @Override
-            public String filenameInAssets() {
-                return "item_layout.json";
-            }
-        };
-
-        JSONObject obj = null;
-
-        try {
-            obj = new JSONObject(fetcher.getLayoutData(getContext(), "http://192.168.3.245:8080/item_layout.json"));
-
-        } catch (JSONException e) {
-
-        }
-
-        return DynamicView.createView(getContext(), obj, container);
+//        ILayoutDataFetcher fetcher = new LayoutDataFetcherImpl(getContext()) {
+//
+//            @Override
+//            public String filenameInAssets() {
+//                return "item_layout.json";
+//            }
+//        };
+//
+//        JSONObject obj = null;
+//
+//        try {
+//            obj = new JSONObject(fetcher.getLayoutData(getContext(), "http://192.168.3.245:8080/item_layout.json"));
+//
+//        } catch (JSONException e) {
+//
+//        }
+//
+//        return DynamicView.createView(getContext(), obj, container);
+        return inflater.inflate(R.layout.frag_native, container, false);
     }
 
 

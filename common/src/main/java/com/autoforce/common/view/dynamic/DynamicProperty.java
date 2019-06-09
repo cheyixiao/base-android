@@ -36,7 +36,7 @@ public class DynamicProperty {
         INTEGER,
         FLOAT,
         COLOR,
-        REF,
+//        REF,
         BOOLEAN,
         BASE64,
         URL,

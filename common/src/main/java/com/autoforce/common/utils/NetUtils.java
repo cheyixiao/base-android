@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * Created by liusilong on 2018/4/10.
  * version:1.0
@@ -78,5 +81,22 @@ public class NetUtils {
         intent.setComponent(cm);
         intent.setAction("android.intent.action.VIEW");
         activity.startActivityForResult(intent, 0);
+    }
+
+    public static String[] parseHostGetIPAddress(String host) {
+        String[] ipAddressArr = null;
+        try {
+            InetAddress[] inetAddressArr = InetAddress.getAllByName(host);
+            if (inetAddressArr != null && inetAddressArr.length > 0) {
+                ipAddressArr = new String[inetAddressArr.length];
+                for (int i = 0; i < inetAddressArr.length; i++) {
+                    ipAddressArr[i] = inetAddressArr[i].getHostAddress();
+                }
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return ipAddressArr;
     }
 }

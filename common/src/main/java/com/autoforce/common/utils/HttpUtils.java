@@ -1,5 +1,7 @@
 package com.autoforce.common.utils;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -69,7 +71,7 @@ public class HttpUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } finally {
             if (conn != null)
                 conn.disconnect();

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.autoforce.common.R;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public abstract class StatusAdapter<T extends StatusTypeInterface> extends Recyc
         if (infos != null) {
             int size = mInfos.size();
             mInfos.addAll(infos);
-            notifyItemInserted(size);
+            notifyItemRangeInserted(size, infos.size());
         }
     }
 
@@ -123,6 +124,7 @@ public abstract class StatusAdapter<T extends StatusTypeInterface> extends Recyc
 
     private List<T> getStatusList(int viewType) {
         List<T> list = new ArrayList<>();
+
         Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         try {
             T entity = entityClass.newInstance();
@@ -250,7 +252,7 @@ public abstract class StatusAdapter<T extends StatusTypeInterface> extends Recyc
 
     }
 
-    private void resizeTopMargin(View itemView, ImageView imageView) {
+    protected void resizeTopMargin(View itemView, ImageView imageView) {
 //        if (imageTopMargin != TOP_MARGIN_DEFAULT) {
 //            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
 //            if (imageTopMargin == TOP_MARGIN_CENTER) {
